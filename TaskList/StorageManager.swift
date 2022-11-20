@@ -33,18 +33,6 @@ class StorageManager {
         return taskList
     }
     
-    func saveContext() {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
     func saveTask(in taskList: inout [Task], taskName: String) {
         let task = Task(context: persistentContainer.viewContext)
         task.title = taskName
@@ -68,6 +56,18 @@ class StorageManager {
                 try persistentContainer.viewContext.save()
             } catch let error {
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }

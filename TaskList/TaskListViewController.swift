@@ -56,9 +56,9 @@ class TaskListViewController: UITableViewController {
             } else {
                 guard let index = self.tableView.indexPathForSelectedRow else { return }
                 let task = taskList[index.row]
-                guard let newTitile = alert.textFields?.first?.text else { return }
-                guard task.title != newTitile, !newTitile.description.isEmpty else { return }
-                task.title = newTitile
+                guard let newTitle = alert.textFields?.first?.text else { return }
+                guard task.title != newTitle, !newTitle.description.isEmpty else { return }
+                task.title = newTitle
                 storageManager.saveContext()
                 tableView.reloadData()
                 tableView.deselectRow(at: index, animated: true)
@@ -74,12 +74,10 @@ class TaskListViewController: UITableViewController {
         alert.addAction(cancelAction)
         alert.addTextField { textField in
             textField.placeholder = "New Task"
-            
             guard let index = self.tableView.indexPathForSelectedRow else { return }
             let task = self.taskList[index.row]
             textField.text = task.title
         }
-        
         present(alert, animated: true)
     }
     
