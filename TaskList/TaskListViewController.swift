@@ -84,7 +84,7 @@ class TaskListViewController: UITableViewController {
     }
     
     private func save(_ taskName: String) {
-        storageManager.save(in: &taskList, taskName: taskName)
+        storageManager.saveTask(in: &taskList, taskName: taskName)
         tableView.reloadData()
     }
 }
@@ -106,7 +106,7 @@ extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            storageManager.delete(in: &taskList, with: indexPath.row)
+            storageManager.deleteTask(in: &taskList, with: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

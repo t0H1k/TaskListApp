@@ -45,7 +45,7 @@ class StorageManager {
         }
     }
     
-    func save(in taskList: inout [Task], taskName: String) {
+    func saveTask(in taskList: inout [Task], taskName: String) {
         let task = Task(context: persistentContainer.viewContext)
         task.title = taskName
         taskList.append(task)
@@ -59,7 +59,7 @@ class StorageManager {
         }
     }
     
-    func delete(in taskList: inout [Task], with index: Int) {
+    func deleteTask(in taskList: inout [Task], with index: Int) {
         let task = taskList.remove(at: index)
         persistentContainer.viewContext.delete(task)
         
